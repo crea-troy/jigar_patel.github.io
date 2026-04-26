@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="CV — Jigar Patel. Physics and ML research background, education, and experience.">
+<title>CV — Jigar Patel</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.cv-layout { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
+@media(max-width:860px){ .cv-layout { grid-template-columns:1fr; } }
+
+/* timeline */
+.timeline { display: flex; flex-direction: column; }
+.tl-section { margin-bottom: 48px; }
+.tl-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+.tl-entry {
+  display: grid; grid-template-columns: 130px 1fr;
+  gap: 0; position: relative; padding-bottom: 28px;
+}
+.tl-entry:not(:last-child)::after {
+  content: ''; position: absolute;
+  left: 129px; top: 8px; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.tl-left { padding-right: 20px; }
+.tl-date { font-family: var(--mono); font-size: 11px; color: var(--dim); line-height: 1.4; }
+.tl-right { position: relative; padding-left: 24px; }
+.tl-right::before {
+  content: ''; position: absolute; left: -4px; top: 6px;
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 1px solid var(--cyan); background: var(--navy);
+}
+.tl-right.current::before { background: var(--cyan); box-shadow: 0 0 8px rgba(56,189,248,0.4); }
+.tl-org { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.tl-role { font-size: 12px; color: var(--cyan); letter-spacing: 0.03em; margin-bottom: 6px; }
+.tl-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.tl-items { list-style: none; margin-top: 6px; }
+.tl-items li { font-size: 12px; color: var(--dim); padding: 2px 0 2px 12px; position: relative; }
+.tl-items li::before { content: '→'; position: absolute; left: 0; color: var(--cyan); font-size: 10px; top: 3px; }
+
+/* sidebar cards */
+.cv-sidebar { display: flex; flex-direction: column; gap: 2px; }
+.cv-card { background: var(--surface); border: 1px solid var(--border); padding: 24px; }
+.cv-card-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+.skill-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.sk { font-size: 12px; padding: 4px 10px; background: rgba(56,189,248,0.06); border: 1px solid var(--border); color: var(--muted); border-radius: 2px; }
+.ach-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.ach-item:last-child { border-bottom: none; }
+.ach-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.ach-sub { font-size: 11px; color: var(--dim); }
+.conf-item { font-size: 12px; color: var(--muted); padding: 6px 0; border-bottom: 1px solid var(--border); line-height: 1.4; }
+.conf-item:last-child { border-bottom: none; }
+.conf-item a { color: var(--cyan); text-decoration: none; }
+.conf-year { font-family: var(--mono); font-size: 10px; color: var(--dim); }
+.ref-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.ref-item:last-child { border-bottom: none; }
+.ref-name { font-weight: 500; color: var(--text); font-size: 13px; margin-bottom: 2px; }
+.ref-inst { font-size: 11px; color: var(--muted); }
+.ref-email { font-family: var(--mono); font-size: 11px; color: var(--cyan); }
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">Jigar <span class="accent">Patel</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="cv.html">CV</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="nav-contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="ph-label">Curriculum Vitae</div>
+        <h1 class="ph-title">Experience <em>&amp; Education</em></h1>
+      </div>
+      <a href="https://www.dropbox.com/scl/fi/ac03vek7c21n0boqmjn9f/Master-Thesis_JGU_Germany.pdf" target="_blank" class="btn btn-primary">Download PDF ↓</a>
+    </div>
+
+    <div class="cv-layout">
+      <div class="cv-main">
+
+        <!-- Research -->
+        <div class="tl-section reveal">
+          <div class="tl-label">Research &amp; Work Experience</div>
+          <div class="timeline">
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">Feb 2025<br>— Present</div></div>
+              <div class="tl-right current">
+                <div class="tl-org">INFN Padova</div>
+                <div class="tl-role">Research Assistant · MODE Collaboration</div>
+                <div class="tl-desc">Applying generative ML (diffusion models) to detector design under Prof. Tommaso Dorigo. Focus on sampling calorimeter optimization for future collider experiments.</div>
+              </div>
+            </div>
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">Dec 2024<br>— Apr 2025</div></div>
+              <div class="tl-right">
+                <div class="tl-org">TU Dortmund University</div>
+                <div class="tl-role">Intern · ATLAS Group (Dr. C.M. Delitzsch)</div>
+                <div class="tl-desc">Scale factor derivation for boosted W/Z boson tagging using ATLAS 13 TeV data. Jet substructure analysis and data-MC agreement optimization.</div>
+              </div>
+            </div>
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">Aug 2021<br>— Aug 2024</div></div>
+              <div class="tl-right">
+                <div class="tl-org">JGU Mainz</div>
+                <div class="tl-role">Research Assistant · Multiple Groups</div>
+                <ul class="tl-items">
+                  <li>ATLAS HGTD (Prof. L. Masetti) — flexible PCB stress testing for CERN precision timing detector</li>
+                  <li>τ SPECT (Prof. M. Fertl) — UCN trigger data analysis, vacuum system development</li>
+                  <li>JUNO (Prof. M. Wurm) — RTD sensor validation, LabVIEW DAQ for liquid scintillator</li>
+                  <li>ADMX / SUPAX (Prof. M. Schott) — axion dark matter sensitivity, noise reduction</li>
+                  <li>A2 Proton Target (Dr. A. Thomas) — SiPM optical response vs. temperature</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">Jun 2021<br>— Sep 2021</div></div>
+              <div class="tl-right">
+                <div class="tl-org">Helmholtz Institute Mainz</div>
+                <div class="tl-role">Research Assistant · EMP Group</div>
+                <div class="tl-desc">Assembly and integration of the PANDA Backward Electromagnetic Calorimeter for the FAIR experiment.</div>
+              </div>
+            </div>
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">Jun 2017<br>— Mar 2021</div></div>
+              <div class="tl-right">
+                <div class="tl-org">Shri Maneklal M. Patel Institute</div>
+                <div class="tl-role">Lecturer · Physics</div>
+                <div class="tl-desc">Undergraduate and graduate teaching: Applied Physics, Engineering Physics, Electronics, Nuclear & Particle Physics.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="tl-section reveal">
+          <div class="tl-label">Education</div>
+          <div class="timeline">
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">2024</div></div>
+              <div class="tl-right">
+                <div class="tl-org">Johannes Gutenberg-Universität Mainz</div>
+                <div class="tl-role">M.Sc Physics (Research-Oriented) · GPA 2.0</div>
+                <div class="tl-desc">Thesis: Signal yield determination in B→K*(892)(→Kπ)ℓ⁺ℓ⁻ at Belle II. Supervisor: Prof. Dr. Wolfgang Gradl.</div>
+              </div>
+            </div>
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">2017</div></div>
+              <div class="tl-right">
+                <div class="tl-org">Kadi Sarva Vishwavidyalaya</div>
+                <div class="tl-role">M.Sc Physics · GPA 7.05/10</div>
+                <div class="tl-desc">Thesis: SiC 1D nanostructure synthesis by plasma arc. Advisor: Dr. Balasubramanian C., IPR.</div>
+              </div>
+            </div>
+
+            <div class="tl-entry">
+              <div class="tl-left"><div class="tl-date">2015</div></div>
+              <div class="tl-right">
+                <div class="tl-org">Gujarat University</div>
+                <div class="tl-role">B.Sc Physics</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="cv-sidebar">
+
+        <div class="cv-card reveal">
+          <div class="cv-card-label">Status</div>
+          <div class="status-live" style="margin-bottom:12px">
+            <div class="status-dot"></div>
+            Open to PhD &amp; fellowship positions
+          </div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.7">
+            Seeking positions in Bayesian ML for HEP, anomaly detection, and related areas. Particularly interested in MSCA Doctoral Networks, CERN programs, and INFN-affiliated PhD positions.
+          </div>
+        </div>
+
+        <div class="cv-card reveal">
+          <div class="cv-card-label">Technical Skills</div>
+          <div class="skill-grid">
+            <span class="sk">PyTorch</span><span class="sk">Python</span><span class="sk">C++</span>
+            <span class="sk">ROOT/PyROOT</span><span class="sk">Uproot</span><span class="sk">zfit</span>
+            <span class="sk">HDF5/h5py</span><span class="sk">basf2</span><span class="sk">GEANT4</span>
+            <span class="sk">Docker</span><span class="sk">GitHub</span><span class="sk">LaTeX</span>
+            <span class="sk">Diffusion Models</span><span class="sk">Transformers</span>
+            <span class="sk">Bayesian DL</span><span class="sk">Scikit-learn</span>
+          </div>
+        </div>
+
+        <div class="cv-card reveal">
+          <div class="cv-card-label">Achievements</div>
+          <div class="ach-item">
+            <div class="ach-title">DST Summer School</div>
+            <div class="ach-sub">Among 125 nationwide · Dept. of Science &amp; Technology · May 2018</div>
+          </div>
+          <div class="ach-item">
+            <div class="ach-title">SERB Indo-Japan Accelerator School</div>
+            <div class="ach-sub">Among 50 worldwide · Science &amp; Engineering Research Board · Mar 2017</div>
+          </div>
+        </div>
+
+        <div class="cv-card reveal">
+          <div class="cv-card-label">Conferences &amp; Schools</div>
+          <div class="conf-item">
+            <div class="conf-year">Jan 2024</div>
+            <a href="https://indico.physics.brown.edu/event/2/" target="_blank">AI Winter Workshop</a> — virtual
+          </div>
+          <div class="conf-item">
+            <div class="conf-year">Jan 2024</div>
+            <a href="https://conference-indico.kek.jp/event/253/" target="_blank">Machine Learning at HEP Workshop</a> — virtual
+          </div>
+          <div class="conf-item">
+            <div class="conf-year">Aug 2022</div>
+            <a href="https://indico.slac.stanford.edu/event/7118/" target="_blank">50th SLAC Summer Institute</a> — virtual
+          </div>
+          <div class="conf-item">
+            <div class="conf-year">May 2018</div>
+            School on Accelerator Science &amp; Technology (SAST-2018)
+          </div>
+          <div class="conf-item">
+            <div class="conf-year">Mar 2018</div>
+            PRL Conference on Condensed Matter Physics — Poster
+          </div>
+          <div class="conf-item">
+            <div class="conf-year">Mar 2017</div>
+            Indo-Japan Accelerator School (IJAS)
+          </div>
+        </div>
+
+        <div class="cv-card reveal">
+          <div class="cv-card-label">References</div>
+          <div class="ref-item">
+            <div class="ref-name">Prof. Dr. Tommaso Dorigo</div>
+            <div class="ref-inst">INFN Padova, Italy</div>
+            <div class="ref-email">tommaso.dorigo@gmail.com</div>
+          </div>
+          <div class="ref-item">
+            <div class="ref-name">Prof. Dr. Wolfgang Gradl</div>
+            <div class="ref-inst">JGU Mainz, Germany</div>
+            <div class="ref-email">gradl@uni-mainz.de</div>
+          </div>
+          <div class="ref-item">
+            <div class="ref-name">Dr. Balasubramanian C.</div>
+            <div class="ref-inst">IPR, India</div>
+            <div class="ref-email">balac@ipr.res.in</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-left">Jigar Patel <span>Physicist &amp; ML Researcher · © 2026</span></div>
+    <div class="footer-right">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
