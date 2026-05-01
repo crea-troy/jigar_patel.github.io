@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Blog — Jigar Patel</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.blog-intro { max-width: 600px; margin-bottom: 48px; }
+.blog-intro p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+
+.coming-block {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 56px; text-align: center; margin-bottom: 48px;
+}
+.cb-icon { font-size: 40px; margin-bottom: 20px; }
+.cb-title { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+.cb-text { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 480px; margin: 0 auto 28px; }
+
+.topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 2px; margin-bottom: 48px; }
+.topic-card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 24px;
+  border-top: 2px solid var(--border);
+  transition: border-top-color .2s;
+}
+.topic-card:hover { border-top-color: var(--cyan); }
+.topic-icon { font-size: 22px; margin-bottom: 10px; }
+.topic-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.topic-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">Jigar <span class="accent">Patel</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="cv.html">CV</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="nav-contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="ph-label">Blog &amp; Notes</div>
+        <h1 class="ph-title">Writing <em>&amp; Thoughts</em></h1>
+      </div>
+    </div>
+
+    <div class="blog-intro reveal">
+      <p>I want to write about the things I find genuinely fascinating — the intersection of Bayesian thinking and experimental physics, the philosophy of anomaly detection, what it means for a model to "know" something. Not tutorials. Not summaries. Actual ideas.</p>
+      <p style="margin-top:12px">Posts are coming. In the meantime, my research is on <a href="https://arxiv.org/abs/2603.06754" target="_blank" style="color:var(--cyan)">arXiv</a> and my code on <a href="https://github.com/crea-troy" target="_blank" style="color:var(--cyan)">GitHub</a>.</p>
+    </div>
+
+    <div class="coming-block reveal">
+      <div class="cb-icon">✍</div>
+      <div class="cb-title">Posts coming soon</div>
+      <div class="cb-text">I'm drafting the first few pieces. If you want to be notified when they go live, drop me an email — I'll add you to the list.</div>
+      <a href="contact.html" class="btn btn-primary">Get notified →</a>
+    </div>
+
+    <div class="sec-label reveal">Topics I plan to write about</div>
+    <div class="topics-grid">
+      <div class="topic-card reveal">
+        <div class="topic-icon">⚛</div>
+        <div class="topic-title">Uncertainty in high-energy physics</div>
+        <div class="topic-desc">What does it mean for a measurement to be uncertain? How do physicists and ML researchers think about this differently — and what can each learn from the other?</div>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">🧠</div>
+        <div class="topic-title">Predictive coding for physicists</div>
+        <div class="topic-desc">Friston's framework is fascinating but usually explained in neuroscience terms. I want to translate it into the language of probabilistic graphical models for a physics audience.</div>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">🔍</div>
+        <div class="topic-title">The philosophy of anomaly detection</div>
+        <div class="topic-desc">If you're looking for "something unusual" without knowing what it is, what does your algorithm actually represent? A meditation on model-independence and Bayesian surprise.</div>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">🌏</div>
+        <div class="topic-title">Physics infrastructure in India</div>
+        <div class="topic-desc">India has extraordinary scientific talent but fragmented infrastructure. Some thoughts on what a world-class collider program in India could look like, and why it matters.</div>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">📊</div>
+        <div class="topic-title">Diffusion models from a physicist's eye</div>
+        <div class="topic-desc">Score-based generative models have a beautiful connection to Langevin dynamics and statistical mechanics. Let's derive it from first principles.</div>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">🎓</div>
+        <div class="topic-title">Navigating academia as an outsider</div>
+        <div class="topic-desc">From teaching physics in India to INFN Padova — what the path actually looks like, and what I wish I'd known earlier about how academic research works.</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-left">Jigar Patel <span>Physicist &amp; ML Researcher · © 2026</span></div>
+    <div class="footer-right">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

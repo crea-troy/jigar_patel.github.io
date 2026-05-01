@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Jigar Patel — Particle physicist and Bayesian ML researcher at INFN Padova. Anomaly detection, uncertainty quantification, LHC physics.">
+<title>Jigar Patel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:       #f7f4ef;      /* warm parchment */
+  --bg2:      #f0ece4;
+  --bg3:      #e8e3da;
+  --ink:      #1a1a2e;      /* deep navy ink */
+  --ink2:     #2d2d4e;
+  --muted:    #6b6680;
+  --dim:      #9e99b0;
+  --rule:     rgba(26,26,46,0.10);
+  --rule2:    rgba(26,26,46,0.06);
+  /* accent palette — one per section */
+  --indigo:   #5048e5;
+  --violet:   #7c3aed;
+  --rose:     #e11d48;
+  --amber:    #d97706;
+  --teal:     #0891b2;
+  --green:    #059669;
+  --serif:    'Merriweather', Georgia, serif;
+  --sans:     'Inter', system-ui, sans-serif;
+  --mono:     'JetBrains Mono', monospace;
+  --sidebar:  280px;
+}
+
+html { scroll-behavior:smooth; font-size:15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════
+   LAYOUT — sidebar + main
+═══════════════════════════════════════ */
+.site {
+  display: flex;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── SIDEBAR ─── */
+.sidebar {
+  width: var(--sidebar);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--ink);
+  color: #e8e4f0;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 24px 32px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+/* scrollbar on sidebar */
+.sidebar::-webkit-scrollbar { width:3px; }
+.sidebar::-webkit-scrollbar-track { background:transparent; }
+.sidebar::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.12); border-radius:2px; }
+
+/* name block */
+.sb-name {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 700;
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 4px;
+}
+.sb-name span {
+  display: block; font-weight: 300; font-style: italic;
+  font-size: 15px; color: rgba(255,255,255,0.55);
+  letter-spacing: 0; margin-top: 2px;
+}
+.sb-pos {
+  font-size: 12px; color: rgba(255,255,255,0.50);
+  line-height: 1.55; margin-bottom: 16px;
+}
+.sb-pos strong { color: rgba(255,255,255,0.80); font-weight: 500; }
+
+/* status dot */
+.sb-status {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--mono); font-size: 10px;
+  color: #34d399; letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.sb-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #34d399;
+  animation: blink 2.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+/* divider */
+.sb-rule { height:1px; background:rgba(255,255,255,0.08); margin:16px 0; }
+
+/* nav links */
+.sb-nav { display:flex; flex-direction:column; gap:2px; margin-bottom:20px; }
+.sb-nav a {
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.50);
+  text-decoration: none; padding: 7px 10px;
+  border-radius: 4px; transition: all .18s;
+  display: flex; align-items: center; gap: 10px;
+}
+.sb-nav a .nav-icon { font-size: 14px; width:18px; text-align:center; flex-shrink:0; }
+.sb-nav a:hover { color: #fff; background: rgba(255,255,255,0.07); }
+.sb-nav a.active { color: #fff; background: rgba(255,255,255,0.10); }
+
+/* social icons row */
+.sb-socials { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+.sb-social {
+  display:flex; align-items:center; justify-content:center;
+  width:32px; height:32px; border-radius:6px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.55); text-decoration:none;
+  font-size: 13px; font-weight:600;
+  transition: all .18s;
+}
+.sb-social:hover { background:rgba(255,255,255,0.14); color:#fff; }
+
+/* institution logos in sidebar */
+.sb-logos {
+  margin-top: auto;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.sb-logos-label {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.25); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.logo-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.inst-logo {
+  height: 28px; width: auto; max-width: 80px;
+  object-fit: contain; filter: brightness(0) invert(1);
+  opacity: 0.45; transition: opacity .2s;
+}
+.inst-logo:hover { opacity: 0.80; }
+/* fallback text logos */
+.logo-text {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 4px 8px; border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* ── MAIN CONTENT ─── */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 0 clamp(24px,4vw,60px);
+}
+
+/* ═══════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════ */
+.section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.section:last-child { border-bottom: none; }
+
+.sec-anchor { display:block; position:relative; top:-80px; visibility:hidden; }
+
+.sec-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--indigo); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-label::before { content:''; width:20px; height:1px; background:currentColor; }
+.sec-label.rose   { color: var(--rose); }
+.sec-label.amber  { color: var(--amber); }
+.sec-label.teal   { color: var(--teal); }
+.sec-label.green  { color: var(--green); }
+.sec-label.violet { color: var(--violet); }
+
+h2.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(26px,3.5vw,36px);
+  font-weight: 700; letter-spacing: -0.02em;
+  color: var(--ink); line-height: 1.1;
+  margin-bottom: 32px;
+}
+h2.sec-title em { font-weight: 300; font-style: italic; color: var(--muted); }
+
+/* ── ABOUT ─── */
+.about-text {
+  font-size: 15px; color: var(--muted);
+  line-height: 1.85; max-width: 680px;
+}
+.about-text p { margin-bottom: 16px; }
+.about-text p:last-child { margin-bottom: 0; }
+.about-text strong { color: var(--ink); font-weight: 600; }
+.about-text a { color: var(--indigo); text-decoration:none; }
+.about-text a:hover { text-decoration:underline; }
+
+/* affiliation logos — horizontal strip */
+.affil-strip {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  align-items: center; margin: 36px 0;
+  padding: 20px 24px;
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--indigo);
+}
+.affil-logo-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+}
+.affil-logo {
+  height: 36px; max-width: 90px;
+  object-fit: contain; opacity: 0.85;
+  filter: grayscale(0.2);
+  transition: opacity .2s;
+}
+.affil-logo:hover { opacity: 1; }
+.affil-logo-name {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--dim); letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+/* fallback pill when image fails */
+.affil-pill {
+  font-family: var(--mono); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 3px;
+  background: var(--bg3); color: var(--ink2);
+  border: 1px solid var(--rule);
+}
+
+/* interests */
+.interests-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+  gap: 2px; margin-top: 32px;
+}
+.int-card {
+  background: var(--bg2); border: 1px solid var(--rule);
+  padding: 18px 20px;
+  border-top: 2px solid transparent;
+  transition: border-top-color .2s;
+}
+.int-card:hover { border-top-color: var(--indigo); }
+.int-emoji { font-size: 22px; margin-bottom: 8px; }
+.int-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 3px; }
+.int-sub { font-size: 12px; color: var(--muted); }
+
+/* ── RESEARCH ─── */
+.proj-stack { display: flex; flex-direction: column; gap: 2px; }
+.proj-card {
+  background: var(--bg2); border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule);
+  padding: 24px 28px; transition: all .2s;
+}
+.proj-card:hover { border-left-color: var(--indigo); background: var(--bg3); }
+.proj-card.featured { border-left-color: var(--amber); }
+.proj-card.featured:hover { border-left-color: var(--amber); }
+
+.proj-top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:10px; }
+.proj-tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:7px; }
+.tag {
+  font-family: var(--mono); font-size: 10px; font-weight:400;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 2px;
+}
+.tag-i { background: rgba(80,72,229,0.08); color: var(--indigo); border:1px solid rgba(80,72,229,0.2); }
+.tag-a { background: rgba(217,119,6,0.08);  color: var(--amber);  border:1px solid rgba(217,119,6,0.2); }
+.tag-t { background: rgba(8,145,178,0.08);  color: var(--teal);   border:1px solid rgba(8,145,178,0.2); }
+.tag-g { background: rgba(5,150,105,0.08);  color: var(--green);  border:1px solid rgba(5,150,105,0.2); }
+.tag-d { background: rgba(26,26,46,0.05);   color: var(--muted);  border:1px solid var(--rule); }
+
+.proj-name { font-family:var(--serif); font-size:17px; font-weight:700; color:var(--ink); line-height:1.3; }
+.proj-period { font-family:var(--mono); font-size:10px; color:var(--dim); white-space:nowrap; padding-top:4px; }
+.proj-desc { font-size:13px; color:var(--muted); line-height:1.75; margin-bottom:14px; }
+
+.proj-metrics {
+  display: flex; gap:20px; flex-wrap:wrap;
+  padding: 12px 0; border-top: 1px solid var(--rule2);
+  margin-bottom: 14px;
+}
+.pm-v { font-family:var(--serif); font-size:20px; font-weight:700; color:var(--ink); line-height:1; }
+.pm-v.amber { color: var(--amber); }
+.pm-k { font-family:var(--mono); font-size:9px; color:var(--dim); letter-spacing:0.07em; text-transform:uppercase; margin-top:2px; }
+
+.proj-links { display:flex; gap:7px; flex-wrap:wrap; }
+.plink {
+  font-family:var(--mono); font-size:10px; letter-spacing:0.07em; text-transform:uppercase;
+  padding:4px 10px; border:1px solid var(--rule); color:var(--muted);
+  text-decoration:none; border-radius:2px; transition:all .18s;
+}
+.plink:hover { border-color:var(--indigo); color:var(--indigo); }
+.plink.primary { background:var(--indigo); color:#fff; border-color:var(--indigo); }
+.plink.primary:hover { background:#4338ca; }
+
+/* ── PUBLICATIONS ─── */
+.pub-list { display:flex; flex-direction:column; }
+.pub-item {
+  display:grid; grid-template-columns:44px 1fr;
+  gap:16px; align-items:start;
+  padding:22px 0; border-bottom:1px solid var(--rule2);
+  transition: background .15s;
+}
+.pub-item:last-child { border-bottom:none; }
+.pub-num {
+  font-family:var(--serif); font-size:36px; font-weight:700;
+  color:var(--rule); line-height:1; transition:color .2s;
+}
+.pub-item:hover .pub-num { color:var(--indigo); }
+.pub-title {
+  font-family:var(--serif); font-size:15px; font-weight:700;
+  color:var(--ink); line-height:1.35; margin-bottom:6px;
+}
+.pub-authors { font-size:12px; color:var(--muted); margin-bottom:4px; }
+.pub-authors strong { color:var(--ink2); }
+.pub-venue { font-family:var(--mono); font-size:10px; color:var(--teal); letter-spacing:0.03em; margin-bottom:10px; }
+.pub-badges { display:flex; gap:6px; flex-wrap:wrap; }
+.badge {
+  font-family:var(--mono); font-size:9px; letter-spacing:0.08em; text-transform:uppercase;
+  padding:3px 8px; border-radius:2px; text-decoration:none; transition:all .18s;
+}
+.badge-fill { background:var(--indigo); color:#fff; }
+.badge-fill:hover { background:#4338ca; }
+.badge-out { border:1px solid var(--rule); color:var(--muted); }
+.badge-out:hover { border-color:var(--indigo); color:var(--indigo); }
+.badge-gold { background:rgba(217,119,6,0.10); color:var(--amber); border:1px solid rgba(217,119,6,0.25); }
+
+/* ── CV / TIMELINE ─── */
+.cv-layout { display:grid; grid-template-columns:1fr 260px; gap:40px; align-items:start; }
+@media(max-width:700px){ .cv-layout{grid-template-columns:1fr;} }
+
+.tl-block { margin-bottom:36px; }
+.tl-head {
+  font-family:var(--mono); font-size:10px; color:var(--teal);
+  letter-spacing:0.14em; text-transform:uppercase; margin-bottom:16px;
+  display:flex; align-items:center; gap:10px;
+}
+.tl-head::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+.tl-entry {
+  display:grid; grid-template-columns:110px 1fr;
+  gap:0; padding-bottom:24px; position:relative;
+}
+.tl-entry:not(:last-child)::after {
+  content:''; position:absolute;
+  left:109px; top:6px; bottom:0; width:1px;
+  background:var(--rule);
+}
+.tl-date { font-family:var(--mono); font-size:10px; color:var(--dim); line-height:1.4; padding-right:16px; }
+.tl-body { padding-left:20px; position:relative; }
+.tl-body::before {
+  content:''; position:absolute; left:-5px; top:5px;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--bg); border:1.5px solid var(--indigo);
+}
+.tl-body.now::before { background:var(--indigo); box-shadow:0 0 0 3px rgba(80,72,229,0.15); }
+.tl-org { font-weight:600; font-size:14px; color:var(--ink); margin-bottom:2px; }
+.tl-role { font-size:11px; color:var(--teal); letter-spacing:0.03em; margin-bottom:5px; }
+.tl-desc { font-size:12px; color:var(--muted); line-height:1.65; }
+.tl-items { list-style:none; margin-top:5px; }
+.tl-items li { font-size:11px; color:var(--dim); padding:2px 0 2px 12px; position:relative; }
+.tl-items li::before { content:'›'; position:absolute; left:0; color:var(--indigo); }
+
+/* sidebar panel on cv */
+.cv-side-panel { display:flex; flex-direction:column; gap:2px; }
+.cvs-card { background:var(--bg2); border:1px solid var(--rule); padding:20px; }
+.cvs-label {
+  font-family:var(--mono); font-size:9px; color:var(--teal);
+  letter-spacing:0.14em; text-transform:uppercase; margin-bottom:12px;
+}
+.skill-wrap { display:flex; flex-wrap:wrap; gap:5px; }
+.sk {
+  font-size:11px; padding:3px 8px;
+  background:var(--bg3); border:1px solid var(--rule); color:var(--muted);
+  border-radius:2px;
+}
+.ref-entry { padding:10px 0; border-bottom:1px solid var(--rule2); }
+.ref-entry:last-child { border-bottom:none; }
+.ref-name { font-weight:600; font-size:12px; color:var(--ink); }
+.ref-inst { font-size:11px; color:var(--muted); }
+.ref-email { font-family:var(--mono); font-size:10px; color:var(--teal); }
+
+/* ── BLOG ─── */
+.blog-coming {
+  background:var(--bg2); border:1px solid var(--rule);
+  border-left:3px solid var(--violet);
+  padding:32px; margin-bottom:32px;
+  max-width:600px;
+}
+.topic-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; }
+.topic-card {
+  background:var(--bg2); border:1px solid var(--rule);
+  padding:20px; transition:background .18s;
+}
+.topic-card:hover { background:var(--bg3); }
+.tc-icon { font-size:20px; margin-bottom:8px; }
+.tc-title { font-weight:600; font-size:13px; color:var(--ink); margin-bottom:4px; }
+.tc-desc { font-size:12px; color:var(--muted); line-height:1.6; }
+
+/* ── CONTACT ─── */
+.contact-layout { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+@media(max-width:680px){ .contact-layout{grid-template-columns:1fr;} }
+
+.cm-list { display:flex; flex-direction:column; gap:2px; margin-bottom:20px; }
+.cm {
+  display:flex; align-items:center; gap:14px;
+  padding:13px 16px; background:var(--bg2); border:1px solid var(--rule);
+  text-decoration:none; color:inherit; transition:all .18s;
+}
+.cm:hover { border-color:var(--indigo); transform:translateX(3px); }
+.cm-icon {
+  width:34px; height:34px; border-radius:50%;
+  background:var(--bg3); border:1px solid var(--rule);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:600; flex-shrink:0; color:var(--muted);
+}
+.cm-label { font-family:var(--mono); font-size:9px; color:var(--dim); letter-spacing:0.08em; text-transform:uppercase; }
+.cm-val { font-size:13px; color:var(--ink); margin-top:1px; }
+
+.note-gold {
+  background:var(--bg2); border:1px solid var(--rule);
+  border-left:3px solid var(--amber);
+  padding:16px 20px; margin-bottom:20px;
+}
+.ng-label { font-family:var(--mono); font-size:9px; color:var(--amber); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:7px; }
+.ng-text { font-size:12px; color:var(--muted); line-height:1.7; }
+
+.form-card { background:var(--bg2); border:1px solid var(--rule); padding:28px; }
+.ft { font-family:var(--serif); font-size:18px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.fs { font-size:12px; color:var(--muted); margin-bottom:20px; }
+.frow { margin-bottom:14px; }
+.frow label { display:block; font-family:var(--mono); font-size:9px; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px; }
+.frow input, .frow textarea, .frow select {
+  width:100%; padding:9px 12px;
+  background:var(--bg); border:1px solid var(--rule);
+  color:var(--ink); font-family:var(--sans); font-size:13px;
+  outline:none; border-radius:2px; transition:border-color .18s;
+}
+.frow input:focus, .frow textarea:focus { border-color:var(--indigo); }
+.frow textarea { resize:vertical; min-height:110px; }
+.form-or {
+  display:flex; align-items:center; gap:12px; margin:16px 0;
+  font-family:var(--mono); font-size:10px; color:var(--dim); letter-spacing:0.1em;
+}
+.form-or::before,.form-or::after { content:''; flex:1; height:1px; background:var(--rule); }
+.submit-btn {
+  width:100%; padding:11px;
+  background:var(--indigo); color:#fff;
+  border:none; font-family:var(--sans); font-size:13px; font-weight:600;
+  letter-spacing:0.03em; cursor:pointer; border-radius:2px; transition:background .18s;
+}
+.submit-btn:hover { background:#4338ca; }
+.mailto-btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:11px;
+  border:1px solid var(--rule); background:transparent;
+  color:var(--muted); font-family:var(--sans); font-size:13px; font-weight:500;
+  text-decoration:none; transition:all .18s; border-radius:2px;
+}
+.mailto-btn:hover { border-color:var(--indigo); color:var(--indigo); }
+
+/* ── FOOTER ─── */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.40);
+  padding: 24px clamp(24px,4vw,60px);
+  font-size: 12px;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:12px;
+}
+footer a { color:rgba(255,255,255,0.40); text-decoration:none; transition:color .18s; }
+footer a:hover { color:#fff; }
+
+/* ── PILL / BADGE shared ─── */
+.pill {
+  font-family:var(--mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
+  padding:3px 9px; border-radius:2px; display:inline-flex;
+}
+.pill-i { background:rgba(80,72,229,0.10); color:var(--indigo); border:1px solid rgba(80,72,229,0.22); }
+.pill-a { background:rgba(217,119,6,0.10);  color:var(--amber);  border:1px solid rgba(217,119,6,0.22); }
+.pill-g { background:rgba(5,150,105,0.10);  color:var(--green);  border:1px solid rgba(5,150,105,0.22); }
+.pill-d { background:rgba(26,26,46,0.05);   color:var(--muted);  border:1px solid var(--rule); }
+
+/* ── UTILS ─── */
+.divider { height:1px; background:var(--rule); margin:32px 0; }
+
+/* reveal animation */
+.reveal { opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ─── */
+@media(max-width:800px){
+  .site { flex-direction:column; }
+  .sidebar { width:100%; height:auto; position:relative; padding:24px 20px; flex-direction:row; flex-wrap:wrap; align-items:center; gap:16px; }
+  .sidebar > * { flex-shrink:0; }
+  .sb-logos { display:none; }
+  .sb-nav { flex-direction:row; flex-wrap:wrap; gap:4px; }
+  .sb-nav a { padding:5px 10px; }
+  .main { padding:0 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="site">
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar">
+
+  <div class="sb-name">
+    Jigar Patel
+    <span>Physicist &amp; ML Researcher</span>
+  </div>
+
+  <div class="sb-pos">
+    <strong>Research Assistant</strong> · INFN Padova<br>
+    MODE Collaboration · Munich, Germany
+  </div>
+
+  <div class="sb-status">
+    <div class="sb-dot"></div>
+    Open to PhD positions
+  </div>
+
+  <div class="sb-rule"></div>
+
+  <nav class="sb-nav">
+    <a href="#about"        class="active"><span class="nav-icon">👤</span> About</a>
+    <a href="#research"            ><span class="nav-icon">⚛</span> Research</a>
+    <a href="#publications"        ><span class="nav-icon">📄</span> Publications</a>
+    <a href="#cv"                  ><span class="nav-icon">🎓</span> CV</a>
+    <a href="#blog"                ><span class="nav-icon">✍</span> Blog</a>
+    <a href="#contact"             ><span class="nav-icon">✉</span> Contact</a>
+  </nav>
+
+  <div class="sb-rule"></div>
+
+  <div class="sb-socials">
+    <a href="mailto:jigarpatel15994@gmail.com" class="sb-social" title="Email">@</a>
+    <a href="https://github.com/crea-troy"          target="_blank" class="sb-social" title="GitHub">GH</a>
+    <a href="https://www.linkedin.com/in/jigar-patel-3820ba11a" target="_blank" class="sb-social" title="LinkedIn">in</a>
+    <a href="https://arxiv.org/abs/2603.06754"       target="_blank" class="sb-social" title="arXiv">∂</a>
+  </div>
+
+  <!-- Institution logos at bottom of sidebar -->
+  <div class="sb-logos">
+    <div class="sb-logos-label">Affiliations</div>
+    <div class="logo-row">
+      <!-- INFN logo -->
+      <img src="https://www.infn.it/wp-content/uploads/2022/01/logo_INFN_blu.png"
+           class="inst-logo" alt="INFN"
+           onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span class=logo-text>INFN</span>')">
+      <!-- CERN logo -->
+      <img src="https://home.cern/sites/default/files/2018-11/Screen%20Shot%202018-11-08%20at%2013.33.13_0.png"
+           class="inst-logo" alt="CERN"
+           onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span class=logo-text>CERN</span>')">
+    </div>
+    <div class="logo-row" style="margin-top:6px">
+      <!-- JGU Mainz -->
+      <img src="https://www.uni-mainz.de/presse/bilder/logo_uni_mainz.gif"
+           class="inst-logo" alt="JGU Mainz"
+           onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span class=logo-text>JGU Mainz</span>')">
+      <!-- MODE -->
+      <span class="logo-text">MODE</span>
+    </div>
+    <div class="logo-row" style="margin-top:6px">
+      <span class="logo-text">Belle II</span>
+      <span class="logo-text">ATLAS</span>
+    </div>
+  </div>
+
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+
+<!-- ── ABOUT ─────────────────────── -->
+<section class="section" id="about">
+  <span class="sec-anchor"></span>
+  <div class="sec-label">About Me</div>
+  <h2 class="sec-title">Physicist, ML researcher, <em>curious human.</em></h2>
+
+  <!-- Affiliation logos strip -->
+  <div class="affil-strip reveal">
+    <div class="affil-logo-wrap">
+      <img src="https://www.infn.it/wp-content/uploads/2022/01/logo_INFN_blu.png"
+           class="affil-logo" alt="INFN Padova"
+           onerror="this.outerHTML='<span class=affil-pill>INFN Padova</span>'">
+      <span class="affil-logo-name">INFN Padova</span>
+    </div>
+    <div class="affil-logo-wrap">
+      <img src="https://home.cern/sites/default/files/2018-11/Screen%20Shot%202018-11-08%20at%2013.33.13_0.png"
+           class="affil-logo" alt="CERN"
+           onerror="this.outerHTML='<span class=affil-pill>CERN</span>'">
+      <span class="affil-logo-name">CERN</span>
+    </div>
+    <div class="affil-logo-wrap">
+      <img src="https://www.uni-mainz.de/presse/bilder/logo_uni_mainz.gif"
+           class="affil-logo" alt="JGU Mainz"
+           onerror="this.outerHTML='<span class=affil-pill>JGU Mainz</span>'">
+      <span class="affil-logo-name">JGU Mainz</span>
+    </div>
+    <div class="affil-logo-wrap">
+      <span class="affil-pill">MODE Collaboration</span>
+      <span class="affil-logo-name">MODE</span>
+    </div>
+    <div class="affil-logo-wrap">
+      <span class="affil-pill">Belle II</span>
+      <span class="affil-logo-name">Belle II</span>
+    </div>
+    <div class="affil-logo-wrap">
+      <span class="affil-pill">ATLAS · HGTD</span>
+      <span class="affil-logo-name">ATLAS</span>
+    </div>
+  </div>
+
+  <div class="about-text reveal">
+    <p>
+      I'm a physicist and ML researcher driven by a specific discomfort: I don't like predictions without honest uncertainty. In physics, an overconfident algorithm can mask a new particle; in AI, it can mislead a decision. So I build things that are honest about what they don't know.
+    </p>
+    <p>
+      I grew up in India, spent four years teaching physics, then moved to Germany to join the research world at <strong>JGU Mainz</strong> — working on everything from detector hardware to rare B-meson decays at <strong>Belle II</strong>. I eventually found my home at the intersection of <strong>Bayesian deep learning</strong> and <strong>high-energy physics</strong>.
+    </p>
+    <p>
+      Currently a Research Assistant at <strong>INFN Padova</strong> with Prof. Tommaso Dorigo, working on physics-informed generative models for detector optimization as part of the <a href="https://mode-collaboration.github.io/" target="_blank">MODE Collaboration</a>. Actively seeking PhD and fellowship opportunities in Europe — MSCA Doctoral Networks, CERN, INFN-affiliated programs.
+    </p>
+  </div>
+
+  <div class="interests-grid reveal" style="margin-top:32px">
+    <div class="int-card"><div class="int-emoji">⚽</div><div class="int-title">Football</div><div class="int-sub">Watching &amp; playing whenever possible</div></div>
+    <div class="int-card"><div class="int-emoji">🏊</div><div class="int-title">Swimming</div><div class="int-sub">Recently started, genuinely enjoying it</div></div>
+    <div class="int-card"><div class="int-emoji">📚</div><div class="int-title">Reading</div><div class="int-sub">And doing nothing — a real hobby</div></div>
+    <div class="int-card"><div class="int-emoji">🌍</div><div class="int-title">People</div><div class="int-sub">Meeting different backgrounds &amp; perspectives</div></div>
+    <div class="int-card"><div class="int-emoji">🔭</div><div class="int-title">Building</div><div class="int-sub">Quarkly, SETU, Indian science infrastructure ideas</div></div>
+  </div>
+</section>
+
+<!-- ── RESEARCH ────────────────────── -->
+<section class="section" id="research">
+  <span class="sec-anchor"></span>
+  <div class="sec-label amber">Research</div>
+  <h2 class="sec-title">Projects <em>&amp; active work</em></h2>
+
+  <div class="proj-stack">
+
+    <div class="proj-card featured reveal">
+      <div class="proj-top">
+        <div>
+          <div class="proj-tags">
+            <span class="tag tag-a">Featured</span>
+            <span class="tag tag-i">Bayesian DL</span>
+            <span class="tag tag-i">UQ</span>
+            <span class="tag tag-d">Architecture</span>
+          </div>
+          <div class="proj-name">Precision-Weighted Confidence Propagation (PWCP)</div>
+        </div>
+        <div class="proj-period">2025 — Ongoing</div>
+      </div>
+      <p class="proj-desc">
+        A neural network architecture that propagates calibrated uncertainty in a single forward pass via Bayesian inverse-variance message passing, inspired by Friston's predictive coding. No Monte Carlo sampling — clean analytic uncertainty at standard-network speed. Achieves the lowest Expected Calibration Error across five baselines on MNIST and CIFAR-10. Now extending as a layer in Transformer-based LHC jet encoders on RODEM benchmarks.
+      </p>
+      <div class="proj-metrics">
+        <div><div class="pm-v amber">11×</div><div class="pm-k">faster than MC Dropout</div></div>
+        <div><div class="pm-v amber">↓ ECE</div><div class="pm-k">best across 5 baselines</div></div>
+        <div><div class="pm-v amber">5 seeds</div><div class="pm-k">MNIST + CIFAR-10</div></div>
+      </div>
+      <div class="proj-links">
+        <span class="plink" style="color:var(--amber);border-color:rgba(217,119,6,0.3)">Manuscript in preparation</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div>
+          <div class="proj-tags">
+            <span class="tag tag-t">Anomaly Detection</span>
+            <span class="tag tag-t">Diffusion Models</span>
+            <span class="tag tag-d">LHC Jets</span>
+          </div>
+          <div class="proj-name">Bayesian Latent Diffusion for Collider Anomaly Detection</div>
+        </div>
+        <div class="proj-period">2025 — 2026</div>
+      </div>
+      <p class="proj-desc">
+        Physics-informed anomaly detection for LHC jet data using a Bayesian latent diffusion model. Probabilistic encoder + latent-space diffusion with mass decorrelation and latent-correlation regularisation. Published on arXiv. Now extending to a Transformer+PWCP architecture incorporating event-level kinematics for per-event epistemic uncertainty on RODEM jet constituents.
+      </p>
+      <div class="proj-links">
+        <a href="https://arxiv.org/abs/2603.06754" target="_blank" class="plink primary">arXiv:2603.06754 ↗</a>
+        <a href="https://arxiv.org/pdf/2603.06754"  target="_blank" class="plink">PDF ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div>
+          <div class="proj-tags">
+            <span class="tag tag-i">SNN + Transformer</span>
+            <span class="tag tag-d">IceCube</span>
+            <span class="tag tag-d">Neutrino Physics</span>
+          </div>
+          <div class="proj-name">τ Neutrino Identification in IceCube · Bayesian SNN+Transformer</div>
+        </div>
+        <div class="proj-period">2025 — Ongoing</div>
+      </div>
+      <p class="proj-desc">
+        Hybrid Bayesian Spiking Neural Network–Transformer for real-time ν<sub>τ</sub> classification in IceCube HESE data. SNN front-end encodes Cherenkov photon arrival times; Transformer integrates global spatial correlations. Per-event epistemic uncertainty via variational inference.
+      </p>
+      <div class="proj-metrics">
+        <div><div class="pm-v">5×</div><div class="pm-k">over BDT baseline</div></div>
+        <div><div class="pm-v">≳100 TeV</div><div class="pm-k">astrophysical regime</div></div>
+      </div>
+      <div class="proj-links">
+        <span class="plink" style="color:var(--amber);border-color:rgba(217,119,6,0.3)">Manuscript in preparation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PUBLICATIONS ───────────────── -->
+<section class="section" id="publications">
+  <span class="sec-anchor"></span>
+  <div class="sec-label teal">Publications</div>
+  <h2 class="sec-title">Papers <em>&amp; preprints</em></h2>
+
+  <div class="pub-list">
+
+    <div class="pub-item reveal">
+      <div class="pub-num">01</div>
+      <div>
+        <div class="pub-title">Learning the Standard Model Manifold: Bayesian Latent Diffusion for Collider Anomaly Detection</div>
+        <div class="pub-authors"><strong>Jigar Patel</strong>, Tommaso Dorigo</div>
+        <div class="pub-venue">arXiv:2603.06754 [physics.data-an] · 2026</div>
+        <div class="pub-badges">
+          <span class="badge badge-gold">First Author</span>
+          <a href="https://arxiv.org/abs/2603.06754" target="_blank" class="badge badge-fill">arXiv ↗</a>
+          <a href="https://arxiv.org/pdf/2603.06754"  target="_blank" class="badge badge-out">PDF ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-num">02</div>
+      <div>
+        <div class="pub-title">On the Codesign of Scientific Experiments and Industrial Systems</div>
+        <div class="pub-authors">Tommaso Dorigo et al. (MODE Collaboration · <strong>J. Patel</strong> among ~50 authors)</div>
+        <div class="pub-venue">arXiv:2603.26613 [physics.ins-det] · 2026</div>
+        <div class="pub-badges">
+          <span class="badge badge-out" style="color:var(--teal);border-color:rgba(8,145,178,0.3)">Collaboration</span>
+          <a href="https://arxiv.org/abs/2603.26613" target="_blank" class="badge badge-fill">arXiv ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-num">03</div>
+      <div>
+        <div class="pub-title">Design and testing of long Flexible Printed Circuits for the ATLAS High Granularity Timing Detector demonstrator</div>
+        <div class="pub-authors">Robles Manzano et al. (ATLAS-HGTD) · A. Brogna, L. Masetti, <strong>J. Patel</strong>, et al.</div>
+        <div class="pub-venue">Journal of Instrumentation (JINST) · 18 (2023) C02015</div>
+        <div class="pub-badges">
+          <a href="https://iopscience.iop.org/article/10.1088/1748-0221/18/02/C02015/pdf" target="_blank" class="badge badge-fill">JINST ↗</a>
+          <a href="https://iopscience.iop.org/article/10.1088/1748-0221/18/02/C02015/pdf" target="_blank" class="badge badge-out">PDF ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-num">04</div>
+      <div>
+        <div class="pub-title">Characterization of Te nanoparticles synthesized by plasma processing</div>
+        <div class="pub-authors">F. Iesari, K. Hatada, <strong>J. Patel</strong>, C. Balasubramanian, T. Miyanaga, H. Ikemoto</div>
+        <div class="pub-venue">Radiation Physics and Chemistry · Vol. 175, 108334 · 2020</div>
+        <div class="pub-badges">
+          <a href="https://doi.org/10.1016/j.radphyschem.2019.05.024" target="_blank" class="badge badge-fill">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-num">05</div>
+      <div>
+        <div class="pub-title">Preparation of SiC nanowires and nanotubes by thermal arc plasma and study of parameters controlling its growth</div>
+        <div class="pub-authors"><strong>Jigar Patel</strong>, Balasubramanian C., A. Satyaprasad, C. Sasmal</div>
+        <div class="pub-venue">Physica E · Vol. 103, pp. 377–382 · 2018</div>
+        <div class="pub-badges">
+          <span class="badge badge-gold">First Author</span>
+          <a href="https://doi.org/10.1016/j.physe.2018.06.026" target="_blank" class="badge badge-fill">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CV ─────────────────────────── -->
+<section class="section" id="cv">
+  <span class="sec-anchor"></span>
+  <div class="sec-label rose">CV</div>
+  <h2 class="sec-title">Experience <em>&amp; Education</em></h2>
+
+  <div class="cv-layout">
+    <div>
+
+      <div class="tl-block reveal">
+        <div class="tl-head">Research &amp; Work</div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Feb 2025<br>— Present</div>
+          <div class="tl-body now">
+            <div class="tl-org">INFN Padova</div>
+            <div class="tl-role">Research Assistant · MODE Collaboration</div>
+            <div class="tl-desc">Diffusion models for detector optimization with Prof. Tommaso Dorigo. Sampling calorimeter design for future colliders.</div>
+          </div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Dec 2024<br>— Apr 2025</div>
+          <div class="tl-body">
+            <div class="tl-org">TU Dortmund</div>
+            <div class="tl-role">Intern · ATLAS Group</div>
+            <div class="tl-desc">W/Z boson tagging scale factors at 13 TeV, jet substructure analysis.</div>
+          </div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Aug 2021<br>— Aug 2024</div>
+          <div class="tl-body">
+            <div class="tl-org">JGU Mainz</div>
+            <div class="tl-role">Research Assistant · Multiple Groups</div>
+            <ul class="tl-items">
+              <li>ATLAS HGTD — flexible PCB stress testing</li>
+              <li>τ SPECT — UCN data analysis, vacuum systems</li>
+              <li>JUNO — RTD sensors, LabVIEW DAQ</li>
+              <li>ADMX / SUPAX — axion dark matter sensitivity</li>
+              <li>A2 Proton Target — SiPM characterization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Jun 2021<br>— Sep 2021</div>
+          <div class="tl-body">
+            <div class="tl-org">Helmholtz Institute Mainz</div>
+            <div class="tl-role">Research Assistant</div>
+            <div class="tl-desc">PANDA Backward EM Calorimeter assembly, FAIR experiment.</div>
+          </div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Jun 2017<br>— Mar 2021</div>
+          <div class="tl-body">
+            <div class="tl-org">Shri Maneklal M. Patel Institute</div>
+            <div class="tl-role">Lecturer · Physics</div>
+            <div class="tl-desc">Applied Physics, Engineering Physics, Electronics, Nuclear &amp; Particle Physics.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-block reveal">
+        <div class="tl-head">Education</div>
+
+        <div class="tl-entry">
+          <div class="tl-date">2024</div>
+          <div class="tl-body">
+            <div class="tl-org">JGU Mainz, Germany</div>
+            <div class="tl-role">M.Sc Physics (Research) · GPA 2.0</div>
+            <div class="tl-desc">Thesis: B→K*(892)(→Kπ)ℓ⁺ℓ⁻ signal yield at Belle II. Supervisor: Prof. Dr. Wolfgang Gradl.</div>
+          </div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">2017</div>
+          <div class="tl-body">
+            <div class="tl-org">Kadi Sarva Vishwavidyalaya, India</div>
+            <div class="tl-role">M.Sc Physics · GPA 7.05/10</div>
+            <div class="tl-desc">Thesis: SiC 1D nanostructure synthesis by plasma arc. Advisor: Dr. Balasubramanian C., IPR.</div>
+          </div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">2015</div>
+          <div class="tl-body">
+            <div class="tl-org">Gujarat University, India</div>
+            <div class="tl-role">B.Sc Physics</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CV sidebar -->
+    <div class="cv-side-panel reveal">
+
+      <div class="cvs-card">
+        <div class="cvs-label">Technical Skills</div>
+        <div class="skill-wrap">
+          <span class="sk">PyTorch</span><span class="sk">Python</span><span class="sk">C++</span>
+          <span class="sk">ROOT/PyROOT</span><span class="sk">Uproot</span><span class="sk">zfit</span>
+          <span class="sk">HDF5</span><span class="sk">basf2</span><span class="sk">GEANT4</span>
+          <span class="sk">Docker</span><span class="sk">GitHub</span><span class="sk">LaTeX</span>
+          <span class="sk">Diffusion Models</span><span class="sk">Transformers</span>
+          <span class="sk">Bayesian DL</span>
+        </div>
+      </div>
+
+      <div class="cvs-card">
+        <div class="cvs-label">Achievements</div>
+        <div class="ref-entry">
+          <div class="ref-name">DST Summer School</div>
+          <div class="ref-inst">125 selected nationwide · May 2018</div>
+        </div>
+        <div class="ref-entry">
+          <div class="ref-name">SERB Accelerator School</div>
+          <div class="ref-inst">50 selected worldwide · Mar 2017</div>
+        </div>
+      </div>
+
+      <div class="cvs-card">
+        <div class="cvs-label">References</div>
+        <div class="ref-entry">
+          <div class="ref-name">Prof. Dr. Tommaso Dorigo</div>
+          <div class="ref-inst">INFN Padova, Italy</div>
+          <div class="ref-email">tommaso.dorigo@gmail.com</div>
+        </div>
+        <div class="ref-entry">
+          <div class="ref-name">Prof. Dr. Wolfgang Gradl</div>
+          <div class="ref-inst">JGU Mainz, Germany</div>
+          <div class="ref-email">gradl@uni-mainz.de</div>
+        </div>
+        <div class="ref-entry">
+          <div class="ref-name">Dr. Balasubramanian C.</div>
+          <div class="ref-inst">IPR, India</div>
+          <div class="ref-email">balac@ipr.res.in</div>
+        </div>
+      </div>
+
+      <div class="cvs-card">
+        <div class="cvs-label">Download</div>
+        <a href="https://www.dropbox.com/scl/fi/ac03vek7c21n0boqmjn9f/Master-Thesis_JGU_Germany.pdf"
+           target="_blank"
+           style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--indigo);text-decoration:none;">
+          📄 Full CV (PDF) ↓
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG ──────────────────────── -->
+<section class="section" id="blog">
+  <span class="sec-anchor"></span>
+  <div class="sec-label violet">Blog</div>
+  <h2 class="sec-title">Writing <em>&amp; notes</em></h2>
+
+  <div class="blog-coming reveal">
+    <div style="font-weight:600;font-size:15px;color:var(--ink);margin-bottom:8px">Posts coming soon</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.75">
+      I want to write about the things I find genuinely fascinating — Bayesian thinking for physicists, the philosophy of anomaly detection, what it means for a model to "know" something. Not tutorials, actual ideas.
+      <br><br>
+      In the meantime: <a href="https://arxiv.org/abs/2603.06754" target="_blank" style="color:var(--indigo)">arXiv paper ↗</a> and <a href="https://github.com/crea-troy" target="_blank" style="color:var(--indigo)">GitHub ↗</a>.
+    </div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-card reveal"><div class="tc-icon">⚛</div><div class="tc-title">Uncertainty in HEP</div><div class="tc-desc">What does it mean for a measurement to be uncertain — and how do physicists and ML researchers think about this differently?</div></div>
+    <div class="topic-card reveal"><div class="tc-icon">🧠</div><div class="tc-title">Predictive coding for physicists</div><div class="tc-desc">Friston's framework translated into the language of probabilistic graphical models.</div></div>
+    <div class="topic-card reveal"><div class="tc-icon">🔍</div><div class="tc-title">The philosophy of anomaly detection</div><div class="tc-desc">If you're looking for "something unusual" without knowing what it is — what does your algorithm actually represent?</div></div>
+    <div class="topic-card reveal"><div class="tc-icon">📊</div><div class="tc-title">Diffusion models from first principles</div><div class="tc-desc">Score-based generative models have a beautiful connection to Langevin dynamics and statistical mechanics.</div></div>
+    <div class="topic-card reveal"><div class="tc-icon">🌏</div><div class="tc-title">Physics infrastructure in India</div><div class="tc-desc">Ideas for what a world-class collider program in India could look like — and why it matters.</div></div>
+    <div class="topic-card reveal"><div class="tc-icon">🎓</div><div class="tc-title">Navigating academia as an outsider</div><div class="tc-desc">From teaching physics in India to INFN Padova — what the path actually looks like.</div></div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────── -->
+<section class="section" id="contact">
+  <span class="sec-anchor"></span>
+  <div class="sec-label green">Contact</div>
+  <h2 class="sec-title">Get in <em>touch</em></h2>
+
+  <div class="contact-layout">
+    <div>
+      <div class="note-gold reveal">
+        <div class="ng-label">PhD &amp; Fellowship Enquiries</div>
+        <div class="ng-text">Actively seeking positions in Bayesian ML for HEP — MSCA Doctoral Networks (2026 call), CERN programs, INFN-affiliated PhDs. I respond to all genuine enquiries.</div>
+      </div>
+
+      <div class="cm-list reveal">
+        <a href="mailto:jigarpatel15994@gmail.com" class="cm">
+          <div class="cm-icon">@</div>
+          <div><div class="cm-label">Email (preferred)</div><div class="cm-val">jigarpatel15994@gmail.com</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/jigar-patel-3820ba11a" target="_blank" class="cm">
+          <div class="cm-icon">in</div>
+          <div><div class="cm-label">LinkedIn</div><div class="cm-val">jigar-patel-3820ba11a</div></div>
+        </a>
+        <a href="https://github.com/crea-troy" target="_blank" class="cm">
+          <div class="cm-icon">GH</div>
+          <div><div class="cm-label">GitHub</div><div class="cm-val">github.com/crea-troy</div></div>
+        </a>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--rule);padding:14px 16px;font-size:12px;color:var(--muted)" class="reveal">
+        📍 Munich, Germany · CET/CEST · Available for remote collaboration
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <div class="ft">Send a message</div>
+      <div class="fs">I usually reply within 1–2 days.</div>
+      <div class="frow">
+        <label>Name</label>
+        <input type="text" id="f-name" placeholder="Marie Curie">
+      </div>
+      <div class="frow">
+        <label>Email</label>
+        <input type="email" id="f-email" placeholder="you@cern.ch">
+      </div>
+      <div class="frow">
+        <label>Subject</label>
+        <select id="f-subject">
+          <option>PhD / Fellowship Enquiry</option>
+          <option>Research Collaboration</option>
+          <option>Question about my work</option>
+          <option>Blog / Talk invite</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="frow">
+        <label>Message</label>
+        <textarea id="f-msg" placeholder="Hi Jigar..."></textarea>
+      </div>
+      <button class="submit-btn" id="form-btn">Send message →</button>
+      <div class="form-or">or</div>
+      <a href="mailto:jigarpatel15994@gmail.com" class="mailto-btn">✉ Mail me directly</a>
+    </div>
+  </div>
+</section>
+
+</main>
+</div><!-- .site -->
+
+<footer>
+  <div>Jigar Patel · Physicist &amp; ML Researcher · Munich, Germany · © 2026</div>
+  <div style="display:flex;gap:16px">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+    <a href="https://github.com/crea-troy" target="_blank">GitHub ↗</a>
+  </div>
+</footer>
+
+<script>
+// active nav on scroll
+const sections = document.querySelectorAll('.section');
+const navLinks  = document.querySelectorAll('.sb-nav a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navLinks.forEach(a => a.classList.remove('active'));
+      const id = e.target.id;
+      const active = document.querySelector(`.sb-nav a[href="#${id}"]`);
+      if(active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.35 });
+sections.forEach(s => obs.observe(s));
+
+// scroll reveal
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// contact form
+document.getElementById('form-btn').addEventListener('click', () => {
+  const n = document.getElementById('f-name').value.trim();
+  const e = document.getElementById('f-email').value.trim();
+  const s = document.getElementById('f-subject').value;
+  const m = document.getElementById('f-msg').value.trim();
+  if(!n||!e||!m){ alert('Please fill in name, email, and message.'); return; }
+  window.location.href = 'mailto:jigarpatel15994@gmail.com'
+    + '?subject=' + encodeURIComponent('[Website] ' + s)
+    + '&body='    + encodeURIComponent('From: ' + n + ' (' + e + ')\n\n' + m);
+});
+
+// smooth scroll for sidebar nav
+document.querySelectorAll('.sb-nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+</script>
+</body>
+</html>
